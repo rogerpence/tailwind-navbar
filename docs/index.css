@@ -1,0 +1,145 @@
+:root {
+    --header-bg-color: #61c9a8;
+    --nav-bg-color: #7dd2b7;
+    --accent-color: gray;
+    --nav-font-color: #1c161c;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: sans-serif;
+    font-size: 62.5%;
+}
+
+nav.navbar {
+    display: grid;
+     grid-template-areas: "row1"
+                          "row2";
+    padding-top: .25rem;
+    background: var(--header-bg-color);
+ }
+
+ span.navbar-toggle {
+    display: none;
+}
+
+
+div.left-side {
+   width: 100%;
+   grid-area: row1;
+   justify-self: start;  
+   display: grid; 
+   grid-auto-columns: auto;       
+   grid-auto-flow: column;       
+}
+
+div.left-side > span {
+   justify-self: end;
+}
+
+div.right-side {
+   grid-area: row2;
+   justify-self: end;
+   align-self: center;
+   width: 100%;
+}
+
+ul.main-nav {
+    list-style-type: none;
+    display: block;
+    justify-self: end;
+    padding: .5rem;
+    font-size: 1rem;
+    background: var(--nav-bg-color);
+    border-top: 1px solid var(--accent-color);   
+}
+
+ul.main-nav  a.nav-links, a.logo {
+    text-decoration: none;
+    padding-bottom: 1rem;
+    color: var(--nav-font-color);
+ }
+
+ .main-nav li {
+/*     padding-top:.5rem; */
+ }
+
+ .logo {
+    display: inline-block;
+    font-size: 1.3rem;
+    margin-top: 1rem;
+    margin-left: 1rem;
+ }
+
+ span.navbar-toggle {
+    cursor: pointer;
+    color: black;
+    font-size: 1.8rem;
+    padding-top: .5rem;
+    padding-right: 1rem;
+ }
+
+a {
+   display: inline-block;
+   width: 100%;
+}
+
+li a:hover {
+    background: var(--header-bg-color);   
+}
+ 
+ @media screen and (min-width: 768px) {
+   nav.navbar {
+       display:grid;
+       grid-template-areas: "row1 row2";
+       padding-top: .25rem;
+       background: var(--header-bg-color);
+    }
+
+   nav.navbar-toggle {
+       display: block;
+   }
+  
+   div.left-side {
+      grid-area: row1;
+      justify-self: start;  
+   }
+
+   div.right-side {
+      grid-area: row2;
+      justify-self: end;
+      display: block;       
+   }
+   
+    ul.main-nav {       
+       display: grid;
+       grid-auto-columns: auto;
+       grid-auto-flow: column;
+       justify-items: end;
+       align-items: center;
+       justify-content: end;
+       background: var(--header-bg-color);       
+       border-top: none;      
+       padding-right: 2rem;
+    } 
+    
+    li {
+       padding-left: .5rem;
+       padding-top: .5rem;
+       padding-bottom: .1rem;
+    }
+    
+    li a:hover {
+       font-weight: 700;
+    }
+    
+    a.logo {
+       justify-self: start;
+    } 
+
+ }
