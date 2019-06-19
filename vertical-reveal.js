@@ -1,6 +1,25 @@
 var rp = rp || {};
 
 rp.VerticalReveal = function(actionElemSelector, contentElemSelector) {
+    toggleMenuDisplay = function() {
+        const millisecondsDiff = (new Date().valueOf()) - this.previousMilliseconds;
+        if (millisecondsDiff < 1000) {
+            console.log(`skipped = ${millisecondsDiff}`);
+            return;
+        }
+
+        this.previousMilliseconds = new Date().valueOf();
+
+        // Ensure there is content to show/hide.
+        var content = document.querySelector(contentElemSelector)
+        if (!content) {
+            console.log('No content element to show/hide found.')
+            return;
+        }
+
+        this.toggle(content);        
+    }
+
     this.previousMilliseconds = new Date().valueOf();    
 
     const clicker = document.querySelector(actionElemSelector);
@@ -16,22 +35,7 @@ rp.VerticalReveal = function(actionElemSelector, contentElemSelector) {
     clicker.addEventListener('click', (e) => { 
         e.preventDefault();
 
-        const millisecondsDiff = (new Date().valueOf()) - this.previousMilliseconds;
-        if (millisecondsDiff < 1000) {
-            console.log(`skipped = ${millisecondsDiff}`);
-            return;
-        }
-
-        this.previousMilliseconds = new Date().valueOf();    
-
-        // Ensure there is content to show/hide.
-        var content = document.querySelector(contentElemSelector)
-        if (!content) {
-            console.log('No content element to show/hide found.')
-            return;
-        }            
-      
-        this.toggle(content);        
+        this.toggleMenuDisplay();
     }, false);    
 }
 
@@ -54,15 +58,6 @@ rp.VerticalReveal.prototype.getElementHeight = function (elem) {
     // The element needs to be visible for scrollHeight 
     // to correctly return the element's height. 
     elem.style.display = 'block'; 
-
-    // let height = elem.scrollHeight;
-    // if (height == 0) {
-    //     height = elem.getAttribute('data-menu-height')
-    // }
-    // else {
-    //     elem.setAttribute('data-menu-height', height);
-    // }
-
     console.log(elem.scrollHeight + 'px')
     return elem.scrollHeight + 'px'; 
     // return `${height}px`;
